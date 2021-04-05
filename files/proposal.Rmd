@@ -1,0 +1,62 @@
+---
+title: "Google Summer of Code 2021"
+author: "Mayur Shende"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Organisation: The R Project for Statistical Computing
+
+### Project: Automated (AutoML) tool to clean univariate time series at microscales
+
+#### Tests
+
+-   Easy: Download the `imputeTestbench` package and demonstrate it with a naturally occurring time series. Document it with RMarkdown.
+
+-   Medium: Suggest possible updates or a new feature you would like to include in the next version of the `imputeTestench` package.
+
+-   Hard: Develop a dummy code of 5 functions and a vignette and pass it with no Error/Warning/Note through <https://win-builder.r-project.org/>
+
+#### Easy Test
+
+Install the `imputeTestbench` package using `install.packages("imputeTestbench")` and load it.
+
+```{r echo=TRUE}
+library(imputeTestbench)
+library(imputeTS)
+```
+
+Load temperature dataset. The dataset contains \~5 years of **high temporal resolution** (hourly measurements) temperature data from Vancouver, Canada. (<https://www.kaggle.com/selfishgene/historical-hourly-weather-data?select=wind_speed.csv>)
+
+```{r echo=TRUE}
+library(readr)
+temperature <- read_csv("temperature.csv")
+summary(temperature)
+```
+
+Use `imputeTestbench` to compare various imputation methods
+
+```{r echo=TRUE, cache=TRUE}
+errs <- impute_errors(temperature$Vancouver, methods = c("na_interpolation", "na_locf", "na_ma", "na_kalman"), missPercentFrom = 10, missPercentTo = 50)
+data.frame(errs)
+plot_errors(errs, plotType = "line")
+```
+
+#### Medium Test
+
+`imputeTestbench` is a great package for comparing various methods of imputation. Few updates that I would suggest are:
+
+-   Introducing new sampling methods such as monte carlo.
+
+-   Making the package interactive.
+
+-   Developing a ShinyApp for the package.
+
+#### Hard Test
+
+For the final test, I created a R package called `Calculator`. It contains five functions, `add()`, `substract()`, `multiply()`, `divide()` and `modulo()` , with documentation and tests. Then, using `devtools::check()`, I checked for any errors or warning, and uploaded the source file to <https://win-builder.r-project.org/>. It passed without errors/warnings/note.
+
+The result of [<https://win-builder.r-project.org/>](https://win-builder.r-project.org/){.uri} is included in the github repository(`00check.log`).
