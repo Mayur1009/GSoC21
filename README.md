@@ -85,7 +85,7 @@ data.frame(errs)
 plot_errors(errs, plotType = "line")
 ```
 
-![](proposal_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+![](files/unnamed-chunk-3-1.png)<!-- -->
 
 #### Medium Test
 
