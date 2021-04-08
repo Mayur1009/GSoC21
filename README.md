@@ -108,5 +108,4 @@ the source file to <https://win-builder.r-project.org/>. It passed
 without errors/warnings/note.
 
 The result of
-<a href="https://win-builder.r-project.org/" class="uri">&lt;https://win-builder.r-project.org/&gt;</a>
-is included in the github repository(`00check.log`).
+<https://win-builder.r-project.org/> is included in the github repository([`00check.log`](https://github.com/Mayur1009/GSoC21/blob/main/files/00check.log)).
